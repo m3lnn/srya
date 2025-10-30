@@ -1,8 +1,7 @@
 ---
 title: "About Me"
-date: 2025-01-15
 draft: false
-layout: "single"
+layout: "expanded"
 ---
 
 ## Hi, I'm Shaurya

@@ -6,7 +6,7 @@
     <description>Recent content on working</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Oct 2025 17:49:25 +0530</lastBuildDate>
+    <lastBuildDate>Thu, 30 Oct 2025 22:48:27 +0530</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Essay2</title>
@@ -23,14 +23,7 @@
       <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;An experimental design system that uses machine learning to suggest component variations, accessibility improvements, and contextual adaptations based on usage patterns and user behavior.&lt;/p&gt;&#xA;&lt;h2 id=&#34;challenge&#34;&gt;Challenge&lt;/h2&gt;&#xA;&lt;p&gt;Traditional design systems are static—they provide components but don&amp;rsquo;t help designers make contextual decisions about which variant to use, how to compose them, or when to break the rules. As design systems scale, the cognitive load of choosing the right patterns increases.&lt;/p&gt;&#xA;&lt;h2 id=&#34;approach&#34;&gt;Approach&lt;/h2&gt;&#xA;&lt;p&gt;We built an intelligent layer on top of our React component library that:&lt;/p&gt;</description>
     </item>
     <item>
-      <title>About Me</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>&lt;h2 id=&#34;hi-im-shaurya&#34;&gt;Hi, I&amp;rsquo;m Shaurya&lt;/h2&gt;&#xA;&lt;p&gt;I&amp;rsquo;m a Software Designer and Creative Technologist currently leading UX at Wongdoody. I believe software is one of the most malleable creative mediums we have, and I&amp;rsquo;m constantly exploring its boundaries.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-im-interested-in&#34;&gt;What I&amp;rsquo;m Interested In&lt;/h2&gt;&#xA;&lt;p&gt;Right now, I&amp;rsquo;m fascinated by:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;How tools connect with each other and act on our behalf&lt;/li&gt;&#xA;&lt;li&gt;Multimodal interaction design (voice, gesture, screen)&lt;/li&gt;&#xA;&lt;li&gt;The intersection of AI and creative tools&lt;/li&gt;&#xA;&lt;li&gt;Building systems that adapt without losing user agency&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;&#xA;&lt;p&gt;I studied Communication Design and Human-Computer Interaction at Carnegie Mellon University. Those years shaped how I think about design—not just as making things look good, but as a way of thinking through complex problems.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Essay</title>
+      <title>How to design underwater</title>
       <link>http://localhost:1313/writing/essay/</link>
       <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/writing/essay/</guid>
@@ -49,6 +42,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/working/agri/</guid>
       <description></description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;h2 id=&#34;hi-im-shaurya&#34;&gt;Hi, I&amp;rsquo;m Shaurya&lt;/h2&gt;&#xA;&lt;p&gt;I&amp;rsquo;m a Software Designer and Creative Technologist currently leading UX at Wongdoody. I believe software is one of the most malleable creative mediums we have, and I&amp;rsquo;m constantly exploring its boundaries.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-im-interested-in&#34;&gt;What I&amp;rsquo;m Interested In&lt;/h2&gt;&#xA;&lt;p&gt;Right now, I&amp;rsquo;m fascinated by:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;How tools connect with each other and act on our behalf&lt;/li&gt;&#xA;&lt;li&gt;Multimodal interaction design (voice, gesture, screen)&lt;/li&gt;&#xA;&lt;li&gt;The intersection of AI and creative tools&lt;/li&gt;&#xA;&lt;li&gt;Building systems that adapt without losing user agency&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;&#xA;&lt;p&gt;I studied Communication Design and Human-Computer Interaction at Carnegie Mellon University. Those years shaped how I think about design—not just as making things look good, but as a way of thinking through complex problems.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

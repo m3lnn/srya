@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shaurya is {{ .Title }} </title>
+    <title>{{ .Title }} </title>
     <meta name="description" content="{{ .Description | default .Site.Params.description }}">
     
     <link rel="icon" type="image/x-icon" href="/assets/default.png">
@@ -15,11 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header-content">
-        {{ block "header-content" . }}{{ end }}
-    </header>
 
-    <main class="main-content">
+    <main class="main-content default-expanded">
         <div class="navigation">
             <a href="{{ "/" | relURL }}" class="{{ if eq .RelPermalink "/" }}active{{ end }}">working</a>
             <a href="{{ "/writing/" | relURL }}" class="{{ if eq .RelPermalink "/writing/" }}active{{ end }}">writing</a>
@@ -31,13 +28,13 @@
             </div>
         </div>
 
-
-        {{ block "main" . }}{{ end }}
+        <div class="container">
+            {{ .Content }}
+        </div>
     </main>
 
     {{ partial "footer.html" . }}
     
-    <script src="/scripts/scroller.js"></script>
     <script src="/scripts/expander.js"></script>
 </body>
 </html>

@@ -1,0 +1,11 @@
+
+
+.essay-container{  
+    margin-top: 2rem;
+}
+.essay-list-item{
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

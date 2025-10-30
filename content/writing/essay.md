@@ -1,5 +1,5 @@
 ---
-title: "Essay"
+title: "How to design underwater"
 date: 2025-01-01
 draft: false
 description: "A short description that appears on /writing"

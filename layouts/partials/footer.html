@@ -1,0 +1,56 @@
+<footer>
+    <div class="footer-head">shaurya</div>
+    
+    <div class="footer-content">
+        <div class="footer-column">
+            <h2>Site</h2>
+            <ul>
+                <li><a href="/working">Working</a></li>
+                <li><a href="/painting">Painting</a></li>
+                <li><a href="/writing">Writing</a></li>
+                <li><a href="/about">About Me</a></li>
+                <li><a href="/resume">Resume</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h2>Connect</h2>
+            <ul>
+                <li><a href="/contact">Reach Out</a></li>
+                <li><a href="https://twitter.com/{{ .Site.Params.social.twitter }}">Twitter</a></li>
+                <li><a href="https://github.com/{{ .Site.Params.social.github }}">GitHub</a></li>
+                <li><a href="https://linkedin.com/in/{{ .Site.Params.social.linkedin }}">LinkedIn</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h2>Tools</h2>
+            <ul>
+                <li><a href="/stack/tech">Tech Stack</a></li>
+                <li><a href="/stack/design">Design Stack</a></li>
+                <li><a href="/stack/style">Style Stack</a></li>
+                <li><a href="/bookshelf">My Workshop</a></li>
+                <li><a href="/inspiration">My Workstation</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h2>Fun</h2>
+            <ul>
+                <li><a href="/now">What I'm Doing Now</a></li>
+                <li><a href="/recommendations">Recommendations</a></li>
+                <li><a href="/coffee">Coffee Map</a></li>
+                <li><a href="/changelog">Site Changelog</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <span>&copy; {{ now.Year }} {{ .Site.Params.authorName }}. Built with care</span>
+        <a href="/colophon">About this site</a>
+    </div>
+
+    <p style="margin-top: 10px; opacity: 0.6;">
+        Last updated at: {{ now.Format "2006-01-02 15:04:05" }}
+    </p>
+</footer>

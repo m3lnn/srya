@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI on working</title>
+    <link>http://localhost:1313/tags/ai/</link>
+    <description>Recent content in AI on working</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 15 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI-Powered Design System</title>
+      <link>http://localhost:1313/working/ai-design-system/</link>
+      <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/working/ai-design-system/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;An experimental design system that uses machine learning to suggest component variations, accessibility improvements, and contextual adaptations based on usage patterns and user behavior.&lt;/p&gt;&#xA;&lt;h2 id=&#34;challenge&#34;&gt;Challenge&lt;/h2&gt;&#xA;&lt;p&gt;Traditional design systems are static—they provide components but don&amp;rsquo;t help designers make contextual decisions about which variant to use, how to compose them, or when to break the rules. As design systems scale, the cognitive load of choosing the right patterns increases.&lt;/p&gt;&#xA;&lt;h2 id=&#34;approach&#34;&gt;Approach&lt;/h2&gt;&#xA;&lt;p&gt;We built an intelligent layer on top of our React component library that:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

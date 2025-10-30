@@ -1,0 +1,29 @@
+{{ define "header-content" }}
+<canvas class="pixel-canvas" id="pixelCanvas"></canvas>
+<div class="heading-content" id="mainHeader">
+    <div id="content">
+        <span class="heading-quote" id="heading">{{ .Site.Params.tagline | default "Finding my place between beauty and practicality" }}</span>
+        <p>{{ .Site.Params.subtitle | default "Software Designer | Creative Technologist" }}</p>
+    </div>
+</div>
+{{ end }}
+
+{{ define "main" }}
+<h1>writing</h1>
+
+<ul>
+{{ range .Pages.ByDate.Reverse }}
+  <li style="margin-bottom: 1rem;">
+
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <small> — {{ .Date.Format "Jan 2, 2006" }}</small>
+
+    {{ with .Params.description }}
+      <div><small>{{ . }}</small></div>
+    {{ end }}
+
+  </li>
+{{ end }}
+</ul>
+
+{{ end }}

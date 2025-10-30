@@ -1,4 +1,26 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = 'shaurya'
+title = 'working'
 enableGitInfo = true
+
+[params]
+  authorName = "Shaurya singh"
+  tagline = "Finding my place between beauty and practicality"
+  subtitle = "Software Designer | Creative Technologist"
+  currentRole = "Lead UX at [Wongdoody](https://www.wongdoody.com/)"
+  bio = """I design software with the belief it's one of the most malleable mediums we have. 
+  At the moment, I'm interested in how tools connect with each other, how they act on our behalf, 
+  and how we interact with them across different modes. I studied Communication Design and 
+  Human-Computer Interaction at Carnegie Mellon University, an experience I hold fondly and will 
+  cherish for the rest of my life. If you have an interesting idea, get in touch."""
+  description = "Portfolio of Shaurya - Software Designer & Creative Technologist"
+
+[params.social]
+  twitter = "yourusername"
+  github = "yourusername"
+  linkedin = "yourusername"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

@@ -1,0 +1,30 @@
+{{ define "main" }}
+<article>
+
+  <!-- Post Metadata Block -->
+  <header>
+    <p><small>{{ .Date.Format "Jan 2, 2006" }}</small></p>
+
+    {{ with .Params.description }}
+      <p>{{ . }}</p>
+    {{ end }}
+
+    {{ with .Params.featuredImage }}
+      <figure>
+        <img src="{{ . }}" alt="{{ $.Title }}">
+      </figure>
+    {{ end }}
+  </header>
+
+  <!-- Actual Markdown Content (includes its own <h1>) -->
+  {{ .Content }}
+
+  <!-- Optional Footer Metadata -->
+  <footer>
+    {{ with .Params.tags }}
+      <p><small>Tags: {{ delimit . ", " }}</small></p>
+    {{ end }}
+  </footer>
+
+</article>
+{{ end }}

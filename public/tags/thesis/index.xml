@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Thesis on working</title>
+    <link>http://localhost:1313/tags/thesis/</link>
+    <description>Recent content in Thesis on working</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 May 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/thesis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adaptive Interfaces: Context-Aware UI Research</title>
+      <link>http://localhost:1313/working/thesis-adaptive-interfaces/</link>
+      <pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/working/thesis-adaptive-interfaces/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;My master&amp;rsquo;s thesis exploring how interfaces can adapt to user behavior, context, and intent without explicit user configuration. The work investigated the balance between personalization and predictability in interactive systems.&lt;/p&gt;&#xA;&lt;h2 id=&#34;research-question&#34;&gt;Research Question&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;How can interfaces adapt to user behavior patterns while maintaining usability and user trust?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;methodology&#34;&gt;Methodology&lt;/h2&gt;&#xA;&lt;h3 id=&#34;phase-1-observational-study&#34;&gt;Phase 1: Observational Study&lt;/h3&gt;&#xA;&lt;p&gt;Conducted contextual inquiries with 24 participants across different professions to understand:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;How they customize their tools&lt;/li&gt;&#xA;&lt;li&gt;What adaptations they find helpful vs. annoying&lt;/li&gt;&#xA;&lt;li&gt;When they want control vs. automation&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;phase-2-prototyping&#34;&gt;Phase 2: Prototyping&lt;/h3&gt;&#xA;&lt;p&gt;Built three prototype systems testing different adaptation approaches:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

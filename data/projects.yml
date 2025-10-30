@@ -1,0 +1,47 @@
+- year: 2025
+  description: "This year was focused on exploring AI tools, and transitioning from college to workplace"
+  items:
+    - title: "AI-Powered Design System"
+      description: "Building intelligent component libraries that adapt to user context"
+      url: "/working/ai-design-system"
+      image: "/assets/projects/ai-design-system.jpg"
+      tags: "AI, Design Systems, React"
+    
+    - title: "Multimodal Interface Study"
+      description: "Research on voice, gesture, and screen interactions"
+      url: "/working/multimodal-interface"
+      image: "/assets/projects/multimodal.jpg"
+      tags: "Research, HCI, Prototyping"
+    
+    - title: "Tool Integration Framework"
+      description: "Seamless workflow between design and development tools"
+      url: "/working/tool-integration"
+      image: "/assets/projects/tool-integration.jpg"
+      tags: "Developer Tools, APIs, Workflow"
+
+- year: 2024
+  description: "Final year at CMU, thesis work, and starting professional journey"
+  items:
+    - title: "CMU Thesis: Adaptive Interfaces"
+      description: "Exploring context-aware UI that responds to user behavior patterns"
+      url: "/working/thesis-adaptive-interfaces"
+      image: "/assets/projects/thesis.jpg"
+      tags: "Research, Machine Learning, UX"
+    
+    - title: "Wongdoody Internship Projects"
+      description: "Client work in e-commerce and enterprise software"
+      url: "/working/wongdoody-internship"
+      image: "/assets/projects/wongdoody.jpg"
+      tags: "Client Work, UX Design, Strategy"
+    
+    - title: "Personal Website v3"
+      description: "Redesigning my portfolio with Hugo and custom interactions"
+      url: "/working/portfolio-v3"
+      image: "/assets/projects/portfolio.jpg"
+      tags: "Web Design, Hugo, CSS"
+    
+    - title: "CMU Design Exhibition"
+      description: "Curating and designing the senior design show"
+      url: "/working/design-exhibition"
+      image: "/assets/projects/exhibition.jpg"
+      tags: "Exhibition Design, Curation"

@@ -149,6 +149,7 @@ body {
     margin: 0;
     font-size: 14px;
     position: relative;
+    touch-action: none;
 }
 
 ::selection {
@@ -251,6 +252,12 @@ MAIN CONTENT
   min-height: 100vh; /* fill the viewport */
   border-radius: 0;
   padding-bottom: 6em;
+}
+
+.main-content.collapsed {
+  margin: 0 2em;
+  border-radius: 20px;
+  transform: translateY(13em);
 }
 
 

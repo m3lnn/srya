@@ -1,15 +1,11 @@
 ---
 title: "Disq"
-date: 2025-10-30T17:18:01+05:30
-draft: true
-year: 2025
+date: 2025-10-31T16:37:01+05:30
+year: 2024
 tags: []
-featured: false
-image: ""
-url: ""
-description: ""
-role: ""
-timeline: ""
+featured: true
+url: "/disq"
+description: "its cool"
 ---
 
 ## Overview

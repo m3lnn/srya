@@ -12,29 +12,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="header-content">
-        <div class=" top-nav">
-            <a href="/">working</a>
-            <a href="/writing">writing</a>
-            <a href="/painting">painting</a>
-
-            <div style="position: absolute; right: 10px; display:flex; gap: 30px">
-                <a href="/about">[ about me ]</a>
-                <a href="/resume">[ resume ]</a>
-            </div>
-        </div>
         
     </header>
 
     <main class="main-content">
+        <div class="navigation">
+            <a href="/" class="">working</a>
+            <a href="/writing/" class="">writing</a>
+            <a href="/painting/" class="">painting</a>
+
+            <div style="position: absolute; right: 10px; display:flex; gap: 30px">
+                <a href="/about/" class="" data-expand="true">[ about me ]</a>
+                <a href="/resume/" class="" data-expand="true">[ resume ]</a>
+            </div>
+        </div>
+
+
         
 <article class="project-single">
     <header class="project-header">
-        
-        <img src="/assets/projects/ai-design-system.jpg" alt="AI-Powered Design System" class="project-hero">
         
         
         <div class="project-meta-header">
@@ -132,13 +132,18 @@
         
         
         
+        <a href="http://localhost:1313/working/disq/" class="nav-link nav-next">
+            <span class="nav-label">Next →</span>
+            <span class="nav-title">Disq</span>
+        </a>
+        
     </nav>
 </article>
 
     </main>
 
     <footer>
-    <div class="footer-head">shaurya</div>
+    <div class="footer-head">creative techologist</div>
     
     <div class="footer-content">
         <div class="footer-column">
@@ -189,11 +194,12 @@
         <a href="/colophon">About this site</a>
     </div>
 
-    <p style="margin-top: 10px; opacity: 0.6;">
-        Last updated at: 2025-10-30 23:36:29
+    <p class="light-text">
+        Last updated on October 31, 2025
     </p>
 </footer>
     
     <script src="/scripts/scroller.js"></script>
+    <script src="/scripts/expander.js"></script>
 </body>
 </html>

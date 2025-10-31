@@ -1,7 +1,7 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
-date: {{ .Date }}
-year: {{ now.Format "2006" }}
+title: "Farming"
+date: 2025-10-31T20:43:20+05:30
+year: 2024
 tags: []
 featured: true
 url: ""

@@ -15,7 +15,7 @@ PROJECTS SECTION
 
 .projects-year {
   position: sticky;
-  top: 2rem;
+  top: 5rem;
   flex: 0 0 150px;
   height: fit-content;
 }
@@ -30,7 +30,11 @@ PROJECTS SECTION
 .project-card {
   padding: 1.5rem;
   border-radius: 12px;
-  height: 200px;
   background: #f9f9f9;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.project-card a {
+  text-decoration: none;
+  color: var(--dark);
 }

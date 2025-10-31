@@ -24,29 +24,58 @@
             <p>Collection of recent works, organised by history</p>
         </div>
         
-        <div>
-            {{ range .Site.Data.projects }}
-            <div class="projects-container">
-                <div class="projects-year">
-                    <h2>{{ .year }}</h2>
-                    <p>{{ .description }}</p>
-                </div>
-                <div class="project-list">
-                    {{ range .items }}
+       <div>
+    {{ $projects := where .Site.RegularPages "Section" "working" }}
+    {{ $projects = sort $projects "Date" "desc" }}
+
+    {{ $yearMap := dict }}
+    {{ $years := slice }}
+
+    <!-- Group projects by year -->
+    {{ range $projects }}
+        {{ $year := .Params.year }}
+        {{ if $year }}
+            {{ $yearStr := string $year }}
+            {{ $existing := index $yearMap $yearStr }}
+            {{ if $existing }}
+                <!-- Ensure $existing is treated as a slice -->
+                {{ $yearMap = merge $yearMap (dict $yearStr ($existing | append .)) }}
+            {{ else }}
+                {{ $yearMap = merge $yearMap (dict $yearStr (slice .)) }}
+                {{ $years = $years | append $year }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    <!-- Display projects grouped by year -->
+    {{ range $year := sort $years "value" "desc" }}
+        {{ $projectsInYear := index $yearMap (string $year) }}
+        
+        <div class="projects-container">
+            <div class="projects-year">
+                <h2>{{ $year }}</h2>
+            </div>
+            
+            <div class="project-list">
+                {{ range $projectsInYear }}
                     <div class="project-card">
-                        <a href="{{ .url }}">
-                            {{ if .image }}
-                            <img src="{{ .image }}" alt="{{ .title }}">
+                        <a href="{{ .RelPermalink }}">
+                            {{ with .Params.image }}
+                                <img src="{{ . }}" alt="{{ $.Title }}">
                             {{ end }}
-                            <h3>{{ .title }}</h3>
-                            <p>{{ .description }}</p>
-                            <span class="project-meta">{{ .tags }}</span>
+                            <h3>{{ .Title }}</h3>
+                            {{ with .Params.description }}
+                                <p>{{ . }}</p>
+                            {{ end }}
+                            {{ with .Params.tags }}
+                                <span class="project-meta">{{ delimit . ", " }}</span>
+                            {{ end }}
                         </a>
                     </div>
-                    {{ end }}
-                </div>
+                {{ end }}
             </div>
-            {{ end }}
         </div>
+    {{ end }}
+</div>
     </div>
 {{ end }}

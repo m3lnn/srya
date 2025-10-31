@@ -157,7 +157,6 @@ function handlePullEnd() {
     applyThemeColors();
     
     currentPull = 0;
-    reachedThreshold = false;
     initPixels();
     resizeCanvas();
 }

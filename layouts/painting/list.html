@@ -1,25 +1,5 @@
 {{ define "header-content" }}
-<canvas class="pixel-canvas" id="pixelCanvas"></canvas>
-<div style="height: 60vh">
+<div class="heading-content">
+        <span class="heading-quote">Soon</span>
 </div>
-{{ end }}
-
-{{ define "main" }}
-<h1>writing</h1>
-
-<ul>
-{{ range .Pages.ByDate.Reverse }}
-  <li style="margin-bottom: 1rem;">
-
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    <small> — {{ .Date.Format "Jan 2, 2006" }}</small>
-
-    {{ with .Params.description }}
-      <div><small>{{ . }}</small></div>
-    {{ end }}
-
-  </li>
-{{ end }}
-</ul>
-
 {{ end }}

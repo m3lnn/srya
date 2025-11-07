@@ -103,9 +103,16 @@ h2{
     margin-bottom: 10px;
 }
 
+h3{
+  font-family: Geologica, sans-serif;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
 p{
   margin: 0;
   margin-bottom: 1em;  
+  line-height: 1.6; 
 }
 
 .light-text {
@@ -149,7 +156,6 @@ body {
     margin: 0;
     font-size: 14px;
     position: relative;
-    touch-action: none;
 }
 
 ::selection {
@@ -165,6 +171,10 @@ hr {
 
 .container {
   margin-bottom: 3em;
+}
+
+.narrow-container {
+  max-width: 550px;
 }
 
 /* ==========================================
@@ -204,7 +214,7 @@ HEADER
 .heading-quote {
     margin: 5px 0;
     font-family: 'FT88 School', sans-serif;
-    font-size:xx-large;
+    font-size: xx-large;
     margin-bottom: 0px;
     transition: color 0.3s ease;
     transition: color 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -242,14 +252,14 @@ MAIN CONTENT
 
 .main-content.expanded {
   margin: 0;
-  min-height: 100vh; /* fill the viewport */
+  min-height: 100vh;
   border-radius: 0;
-  transform: translateY(-13em); /* roughly move over quote */
+  transform: translateY(-13em);
 }
 
 .main-content.default-expanded {
   margin: 0;
-  min-height: 100vh; /* fill the viewport */
+  min-height: 100vh;
   border-radius: 0;
   padding-bottom: 6em;
 }
@@ -311,7 +321,7 @@ footer {
   font-size: 0.9rem;
   display: flex;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
   gap: 30px;
   color: var(--dark);
 }
@@ -325,3 +335,193 @@ footer {
   margin-top: 0.5rem;
 }
 
+/* ==========================================
+RESPONSIVE BREAKPOINTS
+========================================== */
+
+/* Tablet and below (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .heading-content {
+    padding: 40px 3em;
+  }
+
+  .main-content {
+    padding: 0 3em;
+  }
+
+  footer {
+    padding: 2em 3em;
+  }
+
+  .footer-content {
+    gap: 3rem 1.5rem;
+  }
+}
+
+/* Small tablet and large mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  body {
+    font-size: 13px;
+  }
+
+  h1, h2 {
+    font-size: 12px;
+  }
+
+  .navigation {
+    gap: 20px;
+    padding: 15px 10px;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .heading-content {
+    padding: 30px 2em;
+  }
+
+  .heading-quote {
+    font-size: x-large;
+  }
+
+  .main-content {
+    margin: 0 1em;
+    padding: 0 2em;
+    border-radius: 15px;
+  }
+
+  .main-content.expanded {
+    transform: translateY(-10em);
+  }
+
+  .main-content.collapsed {
+    margin: 0 1em;
+    border-radius: 15px;
+    transform: translateY(10em);
+  }
+
+  footer {
+    margin: 1em;
+    padding: 2em 2em;
+    border-radius: 15px;
+  }
+
+  .footer-head {
+    font-size: 2rem;
+    margin: 2rem 0;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem 1rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+/* Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+
+  h1, h2 {
+    font-size: 11px;
+  }
+
+  .navigation {
+    gap: 15px;
+    padding: 12px 5px;
+    margin-bottom: 2rem;
+  }
+
+  .navigation a {
+    font-size: 0.9em;
+  }
+
+  .heading-content {
+    padding: 20px 1em;
+  }
+
+  .heading-quote {
+    font-size: large;
+  }
+
+  .header-content {
+    min-height: 120px;
+  }
+
+  .main-content {
+    margin: 0 0.5em;
+    padding: 0 1.5em;
+    border-radius: 10px;
+  }
+
+  .main-content.expanded {
+    transform: translateY(-8em);
+  }
+
+  .main-content.collapsed {
+    margin: 0 0.5em;
+    border-radius: 10px;
+    transform: translateY(8em);
+  }
+
+  .main-content.default-expanded {
+    margin: 0;
+    border-radius: 0;
+    padding-bottom: 4em;
+  }
+
+  footer {
+    margin: 0.5em;
+    padding: 1.5em 1.5em;
+    border-radius: 10px;
+  }
+
+  .footer-head {
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+    gap: 10px;
+  }
+
+  .container {
+    margin-bottom: 2em;
+  }
+}
+
+/* Extra small mobile (max-width: 320px) */
+@media (max-width: 320px) {
+  .navigation {
+    gap: 10px;
+    padding: 10px 5px;
+  }
+
+  .heading-content {
+    padding: 15px 0.75em;
+  }
+
+  .main-content {
+    padding: 0 1em;
+  }
+
+  footer {
+    padding: 1.5em 1em;
+  }
+
+  .footer-head {
+    font-size: 1.25rem;
+  }
+}

@@ -1,9 +1,18 @@
+{{ define "header-content" }}
+<div class="heading-content">
+        <span class="heading-quote">{{ .Title }}</span>
+        <p>{{ .Params.Excerpt }}</p>
+</div>
+{{ end }}
+
 {{ define "main" }}
 <article>
+  <a href="{{ "/writing/" | relURL }}"
+  >↩ Index</a>
 
   <!-- Post Metadata Block -->
-  <div>
-    <p><small>{{ .Date.Format "Jan 2, 2006" }}</small></p>
+  <div style="margin: 2rem 0;">
+    <p class="light-text"><small>{{ .Date.Format "Jan 2, 2006" }}</small></p>
 
     {{ with .Params.description }}
       <p>{{ . }}</p>
@@ -14,10 +23,12 @@
         <img src="{{ . }}" alt="{{ $.Title }}">
       </figure>
     {{ end }}
-  </header>
+    </div>
 
   <!-- Actual Markdown Content (includes its own <h1>) -->
+    <div class="narrow-container" style="padding-bottom: 2rem;">
   {{ .Content }}
+  </div>
 
 </article>
 {{ end }}

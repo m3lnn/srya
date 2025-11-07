@@ -4,8 +4,10 @@ date: {{ .Date }}
 year: {{ now.Format "2006" }}
 tags: []
 featured: true
-url: ""
+slug: "{{ .Name | urlize }}"
 description: ""
+external: true
+external-url: ""
 ---
 
 ## Overview

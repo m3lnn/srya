@@ -1,15 +1,11 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-draft: true
 description: ""
 tags: []
 categories: []
 featuredImage: ""
-author: "Your Name"
-readingTime: ""
 slug: "{{ .Name | urlize }}"
-series: ""
 excerpt: ""
 ---
 #Essayy

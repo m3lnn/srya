@@ -3,17 +3,17 @@
 
 <canvas class="pixel-canvas" id="pixelCanvas"></canvas>
 <div class="heading-content">
-        <span class="heading-quote">Design, tech and random stuff</span>
+        <span class="heading-quote">Design,tech and ideas</span>
         <p>If you’re thinking without writing, you only think you’re thinking.</p>
 </div>
 {{ end }}
 
 {{ define "main" }}
-<div class="writing-section">
+<div class="narrow-container">
 <h1>writing</h1>
 <p>I write about design, tech and anythink I'm thinking about. This is an exercise in me understanding how things work.</p>
 
-<div class="essay-container">
+<div class="narrow-container">
 {{ range .Pages.ByDate.Reverse }}
     <div class="essay-list-item">
     <a href="{{ .RelPermalink }}">{{ .Title }}</a>

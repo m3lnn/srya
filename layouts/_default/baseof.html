@@ -21,15 +21,15 @@
 
     <main class="main-content">
         <div class="navigation">
-            <a href="{{ "/" | relURL }}" class="{{ if eq .RelPermalink "/" }}active{{ end }}">working</a>
-            <a href="{{ "/writing/" | relURL }}" class="{{ if eq .RelPermalink "/writing/" }}active{{ end }}">writing</a>
-            <a href="{{ "/painting/" | relURL }}" class="{{ if eq .RelPermalink "/painting/" }}active{{ end }}">painting</a>
+    <a href="{{ "/" | relURL }}" class="{{ if eq .RelPermalink "/" }}active{{ end }}">working</a>
+    <a href="{{ "/writing/" | relURL }}" class="{{ if eq .RelPermalink "/writing/" }}active{{ end }}">writing</a>
+    <a href="{{ "/painting/" | relURL }}" class="{{ if eq .RelPermalink "/painting/" }}active{{ end }}">painting</a>
 
-            <div style="position: absolute; right: 10px; display:flex; gap: 30px">
-                <a href="{{ "/about/" | relURL }}" class="{{ if eq .RelPermalink "/about/" }}active{{ end }}" data-expand="true">[ about me ]</a>
-                <a href="{{ "/resume/" | relURL }}" class="{{ if eq .RelPermalink "/resume/" }}active{{ end }}" data-expand="true">[ resume ]</a>
-            </div>
-        </div>
+    <div class="navigation-right" style="position: absolute; right: 10px;">
+        <a href="{{ "/about/" | relURL }}" class="{{ if eq .RelPermalink "/about/" }}active{{ end }}" data-expand="true">[ about me ]</a>
+        <a href="{{ "/resume/" | relURL }}" class="{{ if eq .RelPermalink "/resume/" }}active{{ end }}" data-expand="true">[ resume ]</a>
+    </div>
+</div>
 
 
         {{ block "main" . }}{{ end }}

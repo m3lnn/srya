@@ -191,14 +191,52 @@ HEADER
 .navigation{
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 30px;
-    padding: 20px 0;
+    padding: 20px;
     position: sticky;
     top: 0;
     transition: color 0.3s ease;
     margin-bottom: 5rem;
     background-color: var(--white);
     z-index: 99;
+    flex-wrap: wrap;
+}
+
+.navigation > a {
+    white-space: nowrap;
+}
+
+.navigation-right {
+    display: flex;
+    gap: 30px;
+    white-space: nowrap;
+}
+
+/* Tablet and smaller */
+@media (max-width: 768px) {
+    .navigation {
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .navigation-right {
+        position: static !important;
+        gap: 20px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .navigation {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .navigation-right {
+        gap: 15px;
+    }
 }
 
 .heading-content{

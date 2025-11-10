@@ -6,7 +6,17 @@
     <title> {{ .Title }} </title>
     <meta name="description" content="{{ .Description | default .Site.Params.description }}">
     
-    <link rel="icon" type="image/x-icon" href="/assets/default.png">
+
+    {{ $favicon := "assets/default.png" }}
+
+    {{ if or (in .Permalink "/writing/") (eq .Section "writing") }}
+    {{ $favicon = "assets/text.png" }}
+    {{ else if or (in .Permalink "/painting/") (eq .Section "painting") }}
+    {{ $favicon = "assets/click.png" }}
+    {{ end }}
+
+    <link rel="icon" href="{{ $favicon | relURL }}" type="image/png">
+
     <link rel="stylesheet" href="/css/global.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -14,11 +14,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+     
+<link rel="stylesheet" href="/css/working.css">
+
 </head>
 <body>
     <header class="header-content">
         
-<link rel="stylesheet" href="/css/working.css">
 <canvas class="pixel-canvas" id="pixelCanvas"></canvas>
 
 <div class="heading-content" id="mainHeader">
@@ -33,15 +35,17 @@
 
     <main class="main-content">
         <div class="navigation">
-    <a href="/" class="active">working</a>
-    <a href="/writing/" class="">writing</a>
-    <a href="/painting/" class="">painting</a>
-
-    <div class="navigation-right" style="position: absolute; right: 10px;">
-        <a href="/about/" class="" data-expand="true">[ about me ]</a>
-        <a href="/resume/" class="" data-expand="true">[ resume ]</a>
-    </div>
-</div>
+            <div class="navigation-center">
+                <a href="/" class="active">working</a>
+                <a href="/writing/" class="">writing</a>
+                <a href="/painting/" class="">painting</a>
+            </div>
+            
+            <div class="navigation-right" style="position: absolute; right: 10px;">
+                <a href="/about/" class="" data-expand="true">[ about me ]</a>
+                <a href="/resume/" class="" data-expand="true">[ resume ]</a>
+            </div>
+        </div>
 
 
         
@@ -56,11 +60,20 @@
             <h1>work</h1>
             <p>Collection of recent works, organised by history</p>
         </div>
+
+        <div class="container">
+            <p style="margin-bottom: 0;">I want to see</p>
+            <div class="filter-buttons" id="filterButtons">
+                <button class="filter-btn active" onclick="filterProjects('all')">everything</button>
+                
+            </div>
+        </div>
         
        <div>
             
             
 
+            
             
             
 
@@ -72,6 +85,37 @@
                     
                     
                         
+                        
+                    
+                
+                
+                
+                
+                    
+                        
+                    
+                
+            
+                
+                
+                    
+                    
+                    
+                        
+                    
+                
+                
+                
+                
+                    
+                        
+                    
+                
+                    
+                        
+                    
+                
+                    
                         
                     
                 
@@ -93,7 +137,33 @@
                     
                     <div class="project-list">
                         
-                        <div class="project-card">
+                        <div class="project-card tag-building " data-tags="Building">
+                        
+                            <a href="https://scrp-labs.vercel.app/" target="_blank" rel="noopener">
+                            
+
+                            
+                                <img src="/working/scrp-copy/cover.png" alt="" class="cover-image">
+                            
+
+                            <div class="project-content">
+                                        <h3>Scrp</h3>
+                                    
+                                        <p class="project-description">A website for a hobby 3d printing lab.</p>
+                                    
+
+                                    
+                                        <div class="project-tags">
+                                            
+                                                <span class="tag-pill">Building</span>
+                                            
+                                        </div>
+                                    
+                            </div>
+                        </a>
+                    </div>
+                
+                        <div class="project-card tag-website tag-visual-design tag-html " data-tags="Website,Visual Design,HTML">
                         
                             <a href="https://scrp-labs.vercel.app/" target="_blank" rel="noopener">
                             
@@ -130,6 +200,93 @@
 
         </div>
     </div>
+
+    <script>
+        
+        const allTags = ["Building","Website","Visual Design","HTML",];
+        
+        
+        let activeFilters = new Set();
+        
+        
+        const filterContainer = document.getElementById('filterButtons');
+        allTags.forEach(tag => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.textContent = tag;
+            btn.onclick = () => toggleFilter(tag);
+            filterContainer.appendChild(btn);
+        });
+        
+        
+        filterProjects('all');
+        
+        function filterProjects(filter) {
+            const projects = document.getElementsByClassName('project-card');
+            const buttons = document.getElementsByClassName('filter-btn');
+            
+            if (filter === 'all') {
+                
+                activeFilters.clear();
+                
+                
+                for (let i = 0; i < projects.length; i++) {
+                    projects[i].classList.add('show');
+                }
+                
+                
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].classList.remove('active');
+                }
+                buttons[0].classList.add('active'); 
+            }
+        }
+        
+        function toggleFilter(tag) {
+            const buttons = document.getElementsByClassName('filter-btn');
+            
+            
+            if (activeFilters.has(tag)) {
+                activeFilters.delete(tag);
+            } else {
+                activeFilters.add(tag);
+            }
+            
+            
+            if (activeFilters.size === 0) {
+                filterProjects('all');
+                return;
+            }
+            
+            
+            buttons[0].classList.remove('active');
+            
+            
+            for (let i = 1; i < buttons.length; i++) {
+                const btnTag = buttons[i].textContent;
+                if (activeFilters.has(btnTag)) {
+                    buttons[i].classList.add('active');
+                } else {
+                    buttons[i].classList.remove('active');
+                }
+            }
+            
+            
+            const projects = document.getElementsByClassName('project-card');
+            for (let i = 0; i < projects.length; i++) {
+                const projectTags = projects[i].getAttribute('data-tags').split(',');
+                
+                
+                const hasMatchingTag = projectTags.some(tag => activeFilters.has(tag.trim()));
+                
+                if (hasMatchingTag) {
+                    projects[i].classList.add('show');
+                } else {
+                    projects[i].classList.remove('show');
+                }
+            }
+        }
+    </script>
 
     </main>
 
@@ -186,7 +343,7 @@
     </div>
 
     <p class="light-text">
-        Last updated on November 08, 2025
+        Last updated on November 10, 2025
     </p>
 </footer>
     

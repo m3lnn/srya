@@ -207,6 +207,12 @@ HEADER
     white-space: nowrap;
 }
 
+.navigation-center{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
 .navigation-right {
     display: flex;
     gap: 30px;

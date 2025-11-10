@@ -1,3 +1,39 @@
+.filter-buttons {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+        font-weight: 400;
+        transition: all 0.2s ease;
+        text-decoration: underline;
+        text-decoration-style: wavy ;
+        text-decoration-color: var(--gray);
+        color: var(--themed-primary);
+        text-underline-offset: 3px;
+        border: none;
+        background: none;
+    }
+    
+    .filter-btn:hover {
+  text-decoration-color: var(--themed-primary);
+    }
+    
+    .filter-btn.active {
+  text-decoration-color: var(--themed-primary);
+  background-color:var(--gray);
+    }
+    
+    .project-card {
+        display: none; /* Hidden by default */
+    }
+    
+    .project-card.show {
+        display: block;
+    }
+
+
 /* ==========================================
 PROJECTS SECTION
 ========================================== */

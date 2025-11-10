@@ -1,5 +1,8 @@
-{{ define "header-content" }}
+{{ define "page-head" }}
 <link rel="stylesheet" href="/css/working.css">
+{{ end }}
+
+{{ define "header-content" }}
 <canvas class="pixel-canvas" id="pixelCanvas"></canvas>
 
 <div class="heading-content" id="mainHeader">
@@ -23,6 +26,14 @@
             <h1>work</h1>
             <p>Collection of recent works, organised by history</p>
         </div>
+
+        <div class="container">
+            <p style="margin-bottom: 0;">I want to see</p>
+            <div class="filter-buttons" id="filterButtons">
+                <button class="filter-btn active" onclick="filterProjects('all')">everything</button>
+                <!-- Dynamic filter buttons will be added here by JavaScript -->
+            </div>
+        </div>
         
        <div>
             {{ $projects := where .Site.RegularPages "Section" "working" }}
@@ -30,19 +41,26 @@
 
             {{ $yearMap := dict }}
             {{ $years := slice }}
+            {{ $allTags := slice }}
 
-            <!-- Group projects by year -->
+            <!-- Group projects by year and collect all tags -->
             {{ range $projects }}
                 {{ $year := .Params.year }}
                 {{ if $year }}
                     {{ $yearStr := string $year }}
                     {{ $existing := index $yearMap $yearStr }}
                     {{ if $existing }}
-                        <!-- Ensure $existing is treated as a slice -->
                         {{ $yearMap = merge $yearMap (dict $yearStr ($existing | append .)) }}
                     {{ else }}
                         {{ $yearMap = merge $yearMap (dict $yearStr (slice .)) }}
                         {{ $years = $years | append $year }}
+                    {{ end }}
+                {{ end }}
+                
+                <!-- Collect all tags -->
+                {{ range .Params.tags }}
+                    {{ if not (in $allTags .) }}
+                        {{ $allTags = $allTags | append . }}
                     {{ end }}
                 {{ end }}
             {{ end }}
@@ -63,7 +81,7 @@
                     
                     <div class="project-list">
                         {{ range $projectsInYear }}
-                        <div class="project-card">
+                        <div class="project-card {{ range .Params.tags }}tag-{{ . | urlize }} {{ end }}" data-tags="{{ delimit .Params.tags "," }}">
                         {{ if .Params.external }}
                             <a href="{{ .Params.externalurl }}" target="_blank" rel="noopener">
                             {{ else }}
@@ -98,4 +116,91 @@
 
         </div>
     </div>
+
+    <script>
+        // All unique tags from Hugo
+        const allTags = [{{ range $allTags }}"{{ . }}",{{ end }}];
+        
+        // Track active filters
+        let activeFilters = new Set();
+        
+        // Create filter buttons dynamically
+        const filterContainer = document.getElementById('filterButtons');
+        allTags.forEach(tag => {
+            const btn = document.createElement('button');
+            btn.className = 'filter-btn';
+            btn.textContent = tag;
+            btn.onclick = () => toggleFilter(tag);
+            filterContainer.appendChild(btn);
+        });
+        
+        // Show all projects initially
+        filterProjects('all');
+        
+        function filterProjects(filter) {
+            const projects = document.getElementsByClassName('project-card');
+            const buttons = document.getElementsByClassName('filter-btn');
+            
+            if (filter === 'all') {
+                // Clear all active filters
+                activeFilters.clear();
+                
+                // Show all projects
+                for (let i = 0; i < projects.length; i++) {
+                    projects[i].classList.add('show');
+                }
+                
+                // Update button states
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].classList.remove('active');
+                }
+                buttons[0].classList.add('active'); // Activate "everything" button
+            }
+        }
+        
+        function toggleFilter(tag) {
+            const buttons = document.getElementsByClassName('filter-btn');
+            
+            // Toggle the filter
+            if (activeFilters.has(tag)) {
+                activeFilters.delete(tag);
+            } else {
+                activeFilters.add(tag);
+            }
+            
+            // If no filters are active, show everything
+            if (activeFilters.size === 0) {
+                filterProjects('all');
+                return;
+            }
+            
+            // Deactivate "everything" button
+            buttons[0].classList.remove('active');
+            
+            // Update button states
+            for (let i = 1; i < buttons.length; i++) {
+                const btnTag = buttons[i].textContent;
+                if (activeFilters.has(btnTag)) {
+                    buttons[i].classList.add('active');
+                } else {
+                    buttons[i].classList.remove('active');
+                }
+            }
+            
+            // Filter projects
+            const projects = document.getElementsByClassName('project-card');
+            for (let i = 0; i < projects.length; i++) {
+                const projectTags = projects[i].getAttribute('data-tags').split(',');
+                
+                // Show project if it has ANY of the active filters
+                const hasMatchingTag = projectTags.some(tag => activeFilters.has(tag.trim()));
+                
+                if (hasMatchingTag) {
+                    projects[i].classList.add('show');
+                } else {
+                    projects[i].classList.remove('show');
+                }
+            }
+        }
+    </script>
 {{ end }}

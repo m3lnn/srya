@@ -27,7 +27,7 @@ const colorSets = [
 const headings = [
     'software is eating the world',
     'finding my place between beauty and practicality',
-    'make beautiful things',
+    'making beautiful things',
     'autodidactic',
     'designing with craft and compassion'
 ];

@@ -1,0 +1,58 @@
+.ai-tag {
+  cursor: help;
+  position: relative;
+  padding: 0 1px;
+  color: #390e6d;
+}
+
+/* On hover: gradient text */
+.ai-tag:hover { 
+  background: linear-gradient(90deg, #4964db, #8b5ac7, #98296f, #390e6d);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: aiGradientShift 4s ease infinite;
+}
+
+/* Tooltip */
+.ai-tag::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  top: 120%;
+  transform: translateX(-50%) translateY(2px) scale(0.95);
+  background: #2b2436;
+  color: #eee;
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.25);
+
+  -webkit-text-fill-color: #eee; /* force visible text */
+  color: #eee; /* fallback */
+
+  opacity: 0;
+  pointer-events: none;
+  z-index: 999; /* critical */
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+}
+
+/* Tooltip reveal */
+.ai-tag:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+@keyframes aiGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.callout {
+  border-left: 4px solid var(--yellow-20);
+  background: var(--yellow-10);
+  padding: 12px 16px;
+  margin: 1em 0;
+}

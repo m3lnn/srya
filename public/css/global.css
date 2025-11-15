@@ -90,6 +90,7 @@ h1{
     font-size: 14px;
     margin: 0;
     text-transform: uppercase;
+    margin-bottom: 10px;
     opacity: 0.5;
 }
 
@@ -100,7 +101,7 @@ h2{
     font-size: 14px;
     margin: 0;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    opacity: 0.5;
 }
 
 h3{

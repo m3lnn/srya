@@ -15,24 +15,23 @@
 {{ end }}
 
 {{ define "main" }}
-    <div class="narrow-container">
-        <h1>{{ .Site.Params.authorName | default "Shaurya singh" }}</h1>
+    <div class="container">
+        <h2>{{ .Site.Params.authorName | default "Shaurya singh" }}</h2>
         <p>{{ .Site.Params.currentRole | markdownify }}</p>
-        <p>{{ .Site.Params.bio | markdownify }}</p>
+        <p>I design and build software, and tinker with physical products. I believe in technology as a tool to empower people. If you have an interesting idea, get in touch.</p>
     </div>
     
     <div>
         <div class="container">
-            <h1>work</h1>
-            <p>Collection of recent works, organised by history</p>
-        </div>
 
-        <div class="container">
-            <p style="margin-bottom: 0;">I want to see</p>
+        <div class="filter-section">   
+            <h1>work</h1> 
+            <span style="margin-bottom: 0;">I want to see</span>
             <div class="filter-buttons" id="filterButtons">
                 <button class="filter-btn active" onclick="filterProjects('all')">everything</button>
                 <!-- Dynamic filter buttons will be added here by JavaScript -->
             </div>
+        </div>
         </div>
         
        <div>

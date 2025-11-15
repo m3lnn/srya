@@ -8,7 +8,6 @@ enableGitInfo = true
   tagline = "Finding my place between beauty and practicality"
   subtitle = "Software Designer | Creative Technologist"
   currentRole = "Lead UX at [Wongdoody](https://www.wongdoody.com/)"
-  bio = """I design and build software, and tinker with physical products. I believe in technology as a tool to empower people. If you have an interesting idea, get in touch."""
   description = "Portfolio of Shaurya - Software Designer & Creative Technologist"
 
 [params.social]

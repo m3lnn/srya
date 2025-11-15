@@ -1,7 +1,14 @@
+.filter-section {
+  padding: 15px 10px;  
+  border-radius: 8px;
+  border: 1px solid var(--gray);
+}
+
 .filter-buttons {
         display: flex;
         gap: 8px;
         flex-wrap: wrap;
+        display: inline;
     }
     
     .filter-btn {
@@ -10,19 +17,22 @@
         text-decoration: underline;
         text-decoration-style: wavy ;
         text-decoration-color: var(--gray);
-        color: var(--themed-primary);
+        color: var(--dark);
         text-underline-offset: 3px;
         border: none;
         background: none;
+          text-transform: lowercase;
+      
     }
     
     .filter-btn:hover {
-  text-decoration-color: var(--themed-primary);
+              color: var(--themed-primary);
+
     }
     
     .filter-btn.active {
+      color: var(--themed-primary);
   text-decoration-color: var(--themed-primary);
-  background-color:var(--gray);
     }
     
     .project-card {
@@ -101,6 +111,7 @@ PROJECTS SECTION
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  text-transform: lowercase;
 }
 
 .tag-pill {

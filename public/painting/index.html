@@ -26,9 +26,17 @@
 <body>
     <header class="header-content">
         
-<div class="heading-content">
-        <span class="heading-quote">Soon</span>
-</div>
+<div id="mainHeader">
+        <img id="headerImage" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600" alt="Header">
+        <canvas id="pixelCanvas"></canvas>
+        <div id="content">
+            <h1 id="heading">software is eating the world</h1>
+            <p class="subheading">Scroll up or pull down to change the image</p>
+        </div>
+    </div>
+    <script src="/scripts/scroll-switcher.js"></script>
+    <link rel="stylesheet" href="/css/painting.css">
+
 
     </header>
 
@@ -48,6 +56,27 @@
 
 
         
+<script>
+        (function () {
+    const colorSets = [
+        ['#FF6542', '#393939'],
+        ['#E80051', '#FFFFFF'],
+        ['#F6AD00', '#FFF1D0'],
+        ['#009B72', '#393939'],
+        ['#393939', '#FFFFED'],
+        ['#9747FF', '#FFFFED'],
+        ['#0017E8', '#FFFFED'],
+        ['#FF12AF', '#FFFFED'],
+    ];
+
+    const randomSet = colorSets[Math.floor(Math.random() * colorSets.length)];
+
+    document.documentElement.style.setProperty('--themed-primary', randomSet[0]);
+    document.documentElement.style.setProperty('--themed-secondary', randomSet[1]);
+})();
+
+    </script>
+
     </main>
 
     <footer>
@@ -91,17 +120,14 @@
             <ul>
                 <li><a href="/now">What I'm Doing Now</a></li>
                 <li><a href="/recommendations">Recommendations</a></li>
-                <li><a href="/coffee">Coffee Map</a></li>
-                <li><a href="/changelog">Site Changelog</a></li>
             </ul>
         </div>
     </div>
 
     <div class="footer-bottom">
-        <span>&copy; 2025 Shaurya singh. Built with care</span>
+        <span>&copy; 2025 Shaurya singh.</span>
         <a href="/colophon">About this site</a>
     </div>
-
     <p class="light-text">
         Last updated on November 16, 2025
     </p>

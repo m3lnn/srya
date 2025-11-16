@@ -7,21 +7,6 @@ featured: true
 slug: "{{ .Name | urlize }}"
 description: ""
 external: true
-external-url: ""
+externalurl: ""
+cover: cover.png
 ---
-
-## Overview
-
-Brief description of the project.
-
-## Challenge
-
-What problem were you solving?
-
-## Solution
-
-How did you approach it?
-
-## Impact
-
-What were the results?

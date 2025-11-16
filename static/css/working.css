@@ -137,6 +137,7 @@ RESPONSIVE BREAKPOINTS - PROJECTS
   .projects-year {
     flex: 0 0 120px;
     top: 4rem;
+    border: none;
   }
 
   .project-list {
@@ -153,12 +154,16 @@ RESPONSIVE BREAKPOINTS - PROJECTS
     padding: 1.5em 0;
   }
 
+  .year-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
   .projects-year {
     position: static;
     flex: none;
     width: 100%;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--gray);
   }
 
   .project-list {

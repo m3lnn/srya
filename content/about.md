@@ -8,7 +8,7 @@ layout: "expanded"
 
 ## Hi, I'm Shaurya
 
-I'm a Software Designer and Creative Technologist currently working as a UX Lead at Wongdoody. I believe software is one of the most malleable creative mediums we have, and I'm constantly exploring its boundaries.
+I'm a Software Designer and Creative Technologist currently working as a UX Lead at Wongdoody.
 
 ## Background
 

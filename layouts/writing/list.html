@@ -23,5 +23,23 @@
 </div>
 </div>
 
+<script>
+        (function () {
+            const colorSets = [
+                ['#FF6542', '#393939'],
+                ['#E80051', '#FFFFFF'],
+                ['#F6AD00', '#FFF1D0'],
+                ['#009B72', '#393939'],
+                ['#393939', '#FFFFED'],
+                ['#9747FF', '#FFFFED'],
+                ['#0017E8', '#FFFFED'],
+                ['#FF12AF', '#FFFFED'],
+            ];
 
+            const randomSet = colorSets[Math.floor(Math.random() * colorSets.length)];
+
+            document.documentElement.style.setProperty('--themed-primary', randomSet[0]);
+            document.documentElement.style.setProperty('--themed-secondary', randomSet[1]);
+        })();
+</script>
 {{ end }}

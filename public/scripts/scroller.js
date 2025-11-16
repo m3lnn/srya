@@ -40,6 +40,10 @@ let reachedThreshold = false;
 let currentSetIndex = 0;
 let nextSetIndex = 0;
 
+// Pick a random color set on page load
+currentSetIndex = Math.floor(Math.random() * colorSets.length);
+
+
 // Initialize pixel states and create random order
 function initPixels() {
     pixelStates = new Array(totalPixels).fill(0);

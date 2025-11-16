@@ -1,8 +1,5 @@
 {{ define "page-head" }}
-<link rel="stylesheet" href="/css/working.css">
-{{ end }}
-
-{{ define "header-content" }}
+<link rel="stylesheet" href="/css/working.css"> {{ end }} {{ define "header-content" }}
 <canvas class="pixel-canvas" id="pixelCanvas"></canvas>
 
 <div class="heading-content" id="mainHeader">
@@ -12,77 +9,52 @@
     </div>
 </div>
 
-{{ end }}
+{{ end }} {{ define "main" }}
+<div>
+    <h2>{{ .Site.Params.authorName | default "Shaurya singh" }}</h2>
+    <p>{{ .Site.Params.currentRole | markdownify }}</p>
+    <p>I design and build software, and tinker with physical products. I believe in technology as a tool to empower people. If you have an interesting idea, get in touch.</p>
+</div>
 
-{{ define "main" }}
-    <div>
-        <h2>{{ .Site.Params.authorName | default "Shaurya singh" }}</h2>
-        <p>{{ .Site.Params.currentRole | markdownify }}</p>
-        <p>I design and build software, and tinker with physical products. I believe in technology as a tool to empower people. If you have an interesting idea, get in touch.</p>
-    </div>
-    
-    <div>
-        <div class="container">
+<div>
+    <div class="container">
 
-        <div class="filter-section">   
-            <h1>work</h1> 
+        <div class="filter-section">
+            <h1>work</h1>
             <span style="margin-bottom: 0;">I want to see</span>
             <div class="filter-buttons" id="filterButtons">
                 <button class="filter-btn active" onclick="filterProjects('all')">everything</button>
                 <!-- Dynamic filter buttons will be added here by JavaScript -->
             </div>
         </div>
-        </div>
-        
-       <div>
-            {{ $projects := where .Site.RegularPages "Section" "working" }}
-            {{ $projects = sort $projects "Date" "desc" }}
+    </div>
 
-            {{ $yearMap := dict }}
-            {{ $years := slice }}
-            {{ $allTags := slice }}
+    <div>
+        {{ $projects := where .Site.RegularPages "Section" "working" }} {{ $projects = sort $projects "Date" "desc" }} {{ $yearMap := dict }} {{ $years := slice }} {{ $allTags := slice }}
 
-            <!-- Group projects by year and collect all tags -->
-            {{ range $projects }}
-                {{ $year := .Params.year }}
-                {{ if $year }}
-                    {{ $yearStr := string $year }}
-                    {{ $existing := index $yearMap $yearStr }}
-                    {{ if $existing }}
-                        {{ $yearMap = merge $yearMap (dict $yearStr ($existing | append .)) }}
-                    {{ else }}
-                        {{ $yearMap = merge $yearMap (dict $yearStr (slice .)) }}
-                        {{ $years = $years | append $year }}
-                    {{ end }}
+        <!-- Group projects by year and collect all tags -->
+        {{ range $projects }} {{ $year := .Params.year }} {{ if $year }} {{ $yearStr := string $year }} {{ $existing := index $yearMap $yearStr }} {{ if $existing }} {{ $yearMap = merge $yearMap (dict $yearStr ($existing | append .)) }} {{ else }} {{ $yearMap
+        = merge $yearMap (dict $yearStr (slice .)) }} {{ $years = $years | append $year }} {{ end }} {{ end }}
+
+        <!-- Collect all tags -->
+        {{ range .Params.tags }} {{ if not (in $allTags .) }} {{ $allTags = $allTags | append . }} {{ end }} {{ end }} {{ end }}
+
+        <!-- Display projects grouped by year -->
+        {{ range $year := sort $years "value" "desc" }} {{ $projectsInYear := index $yearMap (string $year) }} {{ $summary := index $.Site.Data.years (string $year) }}
+
+
+        <div class="year-container">
+            <div class="projects-year">
+                <h2>{{ $year }}</h2> {{ with $summary }}
+                <p>{{ . }}</p>
                 {{ end }}
-                
-                <!-- Collect all tags -->
-                {{ range .Params.tags }}
-                    {{ if not (in $allTags .) }}
-                        {{ $allTags = $allTags | append . }}
-                    {{ end }}
-                {{ end }}
-            {{ end }}
+            </div>
 
-            <!-- Display projects grouped by year -->
-            {{ range $year := sort $years "value" "desc" }}
-                {{ $projectsInYear := index $yearMap (string $year) }}
-                {{ $summary := index $.Site.Data.years (string $year) }}
-
-                
-                <div class="year-container">
-                    <div class="projects-year">
-                        <h2>{{ $year }}</h2>
-                        {{ with $summary }}
-                            <p>{{ . }}</p>
-                        {{ end }}
-                    </div>
-                    
-                    <div class="project-list">
-                        {{ range $projectsInYear }}
-                        <div class="project-card {{ range .Params.tags }}tag-{{ . | urlize }} {{ end }}" data-tags="{{ delimit .Params.tags "," }}">
-                        {{ if .Params.external }}
-                            <a class="external" href="{{ .Params.externalurl }}" target="_blank" rel="noopener">
+            <div class="project-list">
+                {{ range $projectsInYear }}
+                <div class="project-card {{ range .Params.tags }}tag-{{ . | urlize }} {{ end }}" data-tags="{{ delimit .Params.tags " , " }}">
+                    {{ if .Params.external }}
+                    <a class="external" href="{{ .Params.externalurl }}" target="_blank" rel="noopener">
                             {{ else }}
                             <a href="{{ .RelPermalink }}">
                         {{ end }}
@@ -110,124 +82,109 @@
                                     {{ end }}
                             </div>
                         </a>
-                    </div>
+                </div>
                 {{ end }}
 
-                    </div>
-                </div>
-            {{ end }}
-
+            </div>
         </div>
+        {{ end }}
+
     </div>
+</div>
 
-    <script>
-        // All unique tags from Hugo
-        const allTags = [{{ range $allTags }}"{{ . }}",{{ end }}];
-        
-        // Track active filters
-        let activeFilters = new Set();
-        
-        // Create filter buttons dynamically
-        const filterContainer = document.getElementById('filterButtons');
-        allTags.forEach(tag => {
-            const btn = document.createElement('button');
-            btn.className = 'filter-btn';
-            btn.textContent = tag;
-            btn.onclick = () => toggleFilter(tag);
-            filterContainer.appendChild(btn);
-        });
-        
-        // Show all projects initially
-        filterProjects('all');
+<script>
+    // All unique tags from Hugo
+    const allTags = [{{ range $allTags }}"{{ . }}",{{ end }}];
+    
+    // Track active filters
+    let activeFilters = new Set();
+    
+    // Create filter buttons dynamically
+    const filterContainer = document.getElementById('filterButtons');
+    allTags.forEach(tag => {
+        const btn = document.createElement('button');
+        btn.className = 'filter-btn';
+        btn.textContent = tag;
+        btn.onclick = () => toggleFilter(tag);
+        filterContainer.appendChild(btn);
+    });
 
-        function updateYearVisibility() {
-    const yearContainers = document.getElementsByClassName('year-container');
+    // Show all projects initially
+    filterProjects('all');
 
-    for (let i = 0; i < yearContainers.length; i++) {
-        const container = yearContainers[i];
-        const projects = container.querySelectorAll('.project-card');
+    function updateYearVisibility() {
+        const yearContainers = document.getElementsByClassName('year-container');
 
-        // Determine if at least one project is visible
-        const anyVisible = Array.from(projects).some(p => p.classList.contains('show'));
+        for (let i = 0; i < yearContainers.length; i++) {
+            const container = yearContainers[i];
+            const projects = container.querySelectorAll('.project-card');
 
-        if (anyVisible) {
-            container.style.display = '';
-        } else {
-            container.style.display = 'none';
+            const anyVisible = Array.from(projects).some(p => p.classList.contains('show'));
+            container.style.display = anyVisible ? '' : 'none';
         }
     }
-}
 
+    function filterProjects(filter) {
+        const projects = document.getElementsByClassName('project-card');
+        const buttons = document.getElementsByClassName('filter-btn');
         
-        function filterProjects(filter) {
-            const projects = document.getElementsByClassName('project-card');
-            const buttons = document.getElementsByClassName('filter-btn');
-            
-            if (filter === 'all') {
-                // Clear all active filters
-                activeFilters.clear();
-                
-                // Show all projects
-                for (let i = 0; i < projects.length; i++) {
-                    projects[i].classList.add('show');
-                }
-                
-                // Update button states
-                for (let i = 0; i < buttons.length; i++) {
-                    buttons[i].classList.remove('active');
-                }
-                buttons[0].classList.add('active'); // Activate "everything" button
-            }
-        }
-        
-        function toggleFilter(tag) {
-            const buttons = document.getElementsByClassName('filter-btn');
-            
-            // Toggle the filter
-            if (activeFilters.has(tag)) {
-                activeFilters.delete(tag);
-            } else {
-                activeFilters.add(tag);
-            }
-            
-            // If no filters are active, show everything
-            if (activeFilters.size === 0) {
-                filterProjects('all');
-                projects[i].classList.add('show');
-                updateYearVisibility();
+        if (filter === 'all') {
+            activeFilters.clear();
 
-                return;
-            }
-            
-            // Deactivate "everything" button
-            buttons[0].classList.remove('active');
-            
-            // Update button states
-            for (let i = 1; i < buttons.length; i++) {
-                const btnTag = buttons[i].textContent;
-                if (activeFilters.has(btnTag)) {
-                    buttons[i].classList.add('active');
-                } else {
-                    buttons[i].classList.remove('active');
-                }
-            }
-            
-            // Filter projects
-            const projects = document.getElementsByClassName('project-card');
             for (let i = 0; i < projects.length; i++) {
-                const projectTags = projects[i].getAttribute('data-tags').split(',');
-                
-                // Show project if it has ANY of the active filters
-                const hasMatchingTag = projectTags.some(tag => activeFilters.has(tag.trim()));
-                
-                if (hasMatchingTag) {
-                    projects[i].classList.add('show');
-                } else {
-                    projects[i].classList.remove('show');
-                }
+                projects[i].classList.add('show');
             }
-            updateYearVisibility();
 
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+
+            buttons[0].classList.add('active');
+            updateYearVisibility();
         }
-    </script>
+    }
+
+    function toggleFilter(tag) {
+        const buttons = document.getElementsByClassName('filter-btn');
+
+        // Toggle filter on/off
+        if (activeFilters.has(tag)) {
+            activeFilters.delete(tag);
+        } else {
+            activeFilters.add(tag);
+        }
+
+        // If no filters left → show everything
+        if (activeFilters.size === 0) {
+            filterProjects('all');
+            return;
+        }
+
+        // Deactivate "everything" button
+        buttons[0].classList.remove('active');
+
+        // Update individual button states
+        for (let i = 1; i < buttons.length; i++) {
+            const btnTag = buttons[i].textContent;
+            buttons[i].classList.toggle('active', activeFilters.has(btnTag));
+        }
+
+        // Apply filtering
+        const projects = document.getElementsByClassName('project-card');
+
+        for (let i = 0; i < projects.length; i++) {
+            const projectTags = projects[i]
+                .getAttribute('data-tags')
+                .split(',')
+                .map(t => t.trim());
+
+            const hasMatch = projectTags.some(t => activeFilters.has(t));
+
+            projects[i].classList.toggle('show', hasMatch);
+        }
+
+        updateYearVisibility();
+    }
+</script>
+
 {{ end }}

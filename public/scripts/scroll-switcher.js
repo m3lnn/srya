@@ -1,14 +1,17 @@
-const mainHeader = document.getElementById('mainHeader');
 const canvas = document.getElementById('pixelCanvas');
 const ctx = canvas.getContext('2d');
 const headerImage = document.getElementById('headerImage');
+const paintingTitle = document.getElementById('paintingTitle');
+const paintingArtist = document.getElementById('paintingArtist');
+const paintingYear = document.getElementById('paintingYear');
+const paintingMedium = document.getElementById('paintingMedium');
 
 const basePadding = 40;
 const maxPadding = 120;
 const threshold = 80;
 
-const gridWidth = 100;
-const gridHeight = 30;
+const gridWidth = 150;
+const gridHeight = 50;
 const totalPixels = gridWidth * gridHeight;
 
 const colorSets = [
@@ -22,14 +25,7 @@ const colorSets = [
     ['#FF12AF', '#FFFFED'],
 ];
 
-const images = [
-    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600',
-    'https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=1600',
-    'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600',
-    'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=1600',
-    'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1600'
-];
-
+let paintings = [];
 let pixelStates = [];
 let pixelOrder = [];
 let decorativePixels = [];
@@ -37,12 +33,66 @@ let startY = 0;
 let currentPull = 0;
 let reachedThreshold = false;
 let currentSetIndex = 0;
-let currentImageIndex = 0;
+let currentPaintingIndex = 0;
 
-// Pick random starting values
+// Pick random starting color set
 currentSetIndex = Math.floor(Math.random() * colorSets.length);
-currentImageIndex = Math.floor(Math.random() * images.length);
-headerImage.src = images[currentImageIndex];
+
+// Fetch painting data from Hugo-generated JSON
+fetch('/painting/index.json')
+  .then(res => {
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    return res.json();
+  })
+  .then(data => {
+    console.log('Loaded paintings:', data);
+    paintings = data;
+    if (paintings.length > 0) {
+      initCanvas();
+    } else {
+      console.warn('No paintings found in JSON');
+    }
+  })
+  .catch(err => {
+    console.error('Failed to load paintings:', err);
+    // Fallback: use a placeholder if no paintings are loaded
+    paintings = [{
+      title: "No paintings found",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600",
+      artist: "",
+      year: "",
+      medium: ""
+    }];
+    initCanvas();
+  });
+
+
+function initCanvas() {
+    if (paintings.length === 0) return;
+    
+    currentPaintingIndex = Math.floor(Math.random() * paintings.length);
+    updatePaintingDisplay();
+    applyThemeColors();
+    initPixels();
+    resizeCanvas();
+      console.log("paintings", paintings)
+
+}
+
+function updatePaintingDisplay() {
+    const painting = paintings[currentPaintingIndex];
+    if (!painting) return;
+    
+    headerImage.src = painting.url_image;
+    headerImage.alt = painting.title;
+    
+    if (paintingTitle) paintingTitle.textContent = painting.title;
+    if (paintingArtist) paintingArtist.textContent = painting.artist ? `by ${painting.artist}` : '';
+    if (paintingYear) paintingYear.textContent = painting.year || '';
+    if (paintingMedium) paintingMedium.textContent = painting.medium || '';
+}
 
 function initPixels() {
     pixelStates = new Array(totalPixels).fill(0);
@@ -56,12 +106,11 @@ function initPixels() {
     
     generateDecorativePixels();
 }
+
 function generateDecorativePixels() {
     decorativePixels = [];
 
     const bottomRows = 3;
-
-    const startPixel = totalPixels - (gridWidth * bottomRows);
 
     // Compute row indices
     const row1Start = totalPixels - gridWidth;           // bottom row
@@ -102,7 +151,6 @@ function generateDecorativePixels() {
     decorativePixels = [...row1, ...randomSelected];
 }
 
-
 function applyThemeColors() {
     const primaryColor = colorSets[currentSetIndex][0];
     const secondaryColor = colorSets[currentSetIndex][1];
@@ -112,6 +160,9 @@ function applyThemeColors() {
 }
 
 function resizeCanvas() {
+    const mainHeader = document.getElementById('mainHeader');
+    if (!mainHeader) return;
+    
     canvas.width = mainHeader.offsetWidth;
     canvas.height = mainHeader.offsetHeight;
     drawPixels();
@@ -161,6 +212,9 @@ function updatePixels(progress) {
 }
 
 function setPadding(pull) {
+    const mainHeader = document.getElementById('mainHeader');
+    if (!mainHeader) return;
+    
     const newPadding = basePadding + pull;
     mainHeader.style.paddingTop = `${newPadding}px`;
     mainHeader.style.paddingBottom = `${newPadding}px`;
@@ -194,16 +248,10 @@ function handlePullMove(clientY) {
 
 function handlePullEnd() {
     // Check if threshold was reached and switch theme/image
-    if (reachedThreshold) {
-        // Switch to next color set
-        currentSetIndex = (currentSetIndex + 1) % colorSets.length;
-        
-        // Switch to next image
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        headerImage.src = images[currentImageIndex];
-        
-        // Apply new theme colors
-        applyThemeColors();
+    if (reachedThreshold && paintings.length > 0) {
+        // Switch to next painting
+        currentPaintingIndex = (currentPaintingIndex + 1) % paintings.length;
+        updatePaintingDisplay();
     }
     
     setPadding(0);
@@ -215,44 +263,8 @@ function handlePullEnd() {
     resizeCanvas();
 }
 
-// Initialize
-initPixels();
-resizeCanvas();
-applyThemeColors();
+// Window resize handler
 window.addEventListener('resize', resizeCanvas);
-
-// Touch events
-window.addEventListener('touchstart', (e) => {
-    handlePullStart(e.touches[0].clientY);
-});
-
-window.addEventListener('touchmove', (e) => {
-    handlePullMove(e.touches[0].clientY);
-});
-
-window.addEventListener('touchend', handlePullEnd);
-
-// Mouse events
-let isMouseDown = false;
-
-window.addEventListener('mousedown', (e) => {
-    if (handlePullStart(e.clientY)) {
-        isMouseDown = true;
-    }
-});
-
-window.addEventListener('mousemove', (e) => {
-    if (isMouseDown) {
-        handlePullMove(e.clientY);
-    }
-});
-
-window.addEventListener('mouseup', () => {
-    if (isMouseDown) {
-        isMouseDown = false;
-        handlePullEnd();
-    }
-});
 
 // Wheel event
 let wheelTimeout;

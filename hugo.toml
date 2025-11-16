@@ -19,3 +19,7 @@ enableGitInfo = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[outputs]
+  section = ["HTML", "JSON"]
+  home = ["HTML"]

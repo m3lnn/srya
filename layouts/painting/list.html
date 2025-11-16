@@ -2,13 +2,27 @@
 <div id="mainHeader">
         <img id="headerImage" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600" alt="Header">
         <canvas id="pixelCanvas"></canvas>
-        <div id="content">
+        <div id="paintingInfo" class="painting-info">
+            <!--
+            <h1 id="paintingTitle"></h1>
+            <p id="paintingYear"></p>
+            <p id="paintingMedium"></p>
+            -->
         </div>
-    </header>
     <script src="/scripts/scroll-switcher.js"></script>
     <link rel="stylesheet" href="/css/painting.css">
 
 {{ end }}
 
 {{ define "main" }}
+<div class="painting-list">
+    {{- range where .Site.RegularPages "Section" "painting" -}}
+    <article class="painting-item">
+        <span href="{{ .RelPermalink }}">
+            <p>{{ .Title }}</p>
+            {{ with .Params.artist }}<p>by {{ . }}</p>{{ end }}
+        </span>
+    </article>
+    {{- end -}}
+</div>
 {{ end}}

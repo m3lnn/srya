@@ -486,6 +486,7 @@ RESPONSIVE BREAKPOINTS
     gap: 15px;
     padding: 12px 5px;
     margin-bottom: 2rem;
+    border-bottom: solid 1px var(--gray);
   }
 
   .navigation a {

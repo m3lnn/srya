@@ -8,5 +8,4 @@ slug: "fast-cast"
 description: "Vibe coded an app to help design students find models for their shoots quickly"
 external: true
 externalurl: https://fastcast.space/
-cover: cover.png
 ---

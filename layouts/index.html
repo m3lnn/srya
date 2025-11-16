@@ -82,7 +82,7 @@
                         {{ range $projectsInYear }}
                         <div class="project-card {{ range .Params.tags }}tag-{{ . | urlize }} {{ end }}" data-tags="{{ delimit .Params.tags "," }}">
                         {{ if .Params.external }}
-                            <a href="{{ .Params.externalurl }}" target="_blank" rel="noopener">
+                            <a class="external" href="{{ .Params.externalurl }}" target="_blank" rel="noopener">
                             {{ else }}
                             <a href="{{ .RelPermalink }}">
                         {{ end }}
@@ -92,7 +92,11 @@
                             {{ end }}
 
                             <div class="project-content">
-                                        <h3>{{ .Title }}</h3>
+                                        <h3>{{ .Title }}
+                                            {{ if .Params.external }}
+                                                🔗
+                                            {{ end }}
+                                        </h3>
                                     {{ with .Params.description }}
                                         <p class="project-description">{{ . }}</p>
                                     {{ end }}

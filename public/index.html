@@ -339,6 +339,25 @@
         
         
         filterProjects('all');
+
+        function updateYearVisibility() {
+    const yearContainers = document.getElementsByClassName('year-container');
+
+    for (let i = 0; i < yearContainers.length; i++) {
+        const container = yearContainers[i];
+        const projects = container.querySelectorAll('.project-card');
+
+        
+        const anyVisible = Array.from(projects).some(p => p.classList.contains('show'));
+
+        if (anyVisible) {
+            container.style.display = '';
+        } else {
+            container.style.display = 'none';
+        }
+    }
+}
+
         
         function filterProjects(filter) {
             const projects = document.getElementsByClassName('project-card');
@@ -374,6 +393,9 @@
             
             if (activeFilters.size === 0) {
                 filterProjects('all');
+                projects[i].classList.add('show');
+                updateYearVisibility();
+
                 return;
             }
             
@@ -404,6 +426,8 @@
                     projects[i].classList.remove('show');
                 }
             }
+            updateYearVisibility();
+
         }
     </script>
 

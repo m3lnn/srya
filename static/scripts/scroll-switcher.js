@@ -1,8 +1,6 @@
 const mainHeader = document.getElementById('mainHeader');
 const canvas = document.getElementById('pixelCanvas');
 const ctx = canvas.getContext('2d');
-const content = document.getElementById('content');
-const heading = document.getElementById('heading');
 const headerImage = document.getElementById('headerImage');
 
 const basePadding = 40;
@@ -32,14 +30,6 @@ const images = [
     'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1600'
 ];
 
-const headings = [
-    'software is eating the world',
-    'finding my place between beauty and practicality',
-    'making beautiful things',
-    'autodidactic',
-    'designing with craft and compassion'
-];
-
 let pixelStates = [];
 let pixelOrder = [];
 let decorativePixels = [];
@@ -47,9 +37,7 @@ let startY = 0;
 let currentPull = 0;
 let reachedThreshold = false;
 let currentSetIndex = 0;
-let nextSetIndex = 0;
 let currentImageIndex = 0;
-let nextImageIndex = 0;
 
 // Pick random starting values
 currentSetIndex = Math.floor(Math.random() * colorSets.length);
@@ -68,22 +56,52 @@ function initPixels() {
     
     generateDecorativePixels();
 }
-
 function generateDecorativePixels() {
     decorativePixels = [];
-    const numDecorativePixels = Math.floor(Math.random() * 6) + 5;
+
     const bottomRows = 3;
+
     const startPixel = totalPixels - (gridWidth * bottomRows);
-    
-    const availablePixels = Array.from({length: gridWidth * bottomRows}, (_, i) => startPixel + i);
-    
-    for (let i = availablePixels.length - 1; i > 0; i--) {
+
+    // Compute row indices
+    const row1Start = totalPixels - gridWidth;           // bottom row
+    const row2Start = totalPixels - gridWidth * 2;
+    const row3Start = totalPixels - gridWidth * 3;
+
+    // Row 1 (bottom row) → include all of them
+    const row1 = Array.from(
+        { length: gridWidth },
+        (_, i) => row1Start + i
+    );
+
+    // Row 2 + Row 3 → pool of possible random picks
+    const row2 = Array.from(
+        { length: gridWidth },
+        (_, i) => row2Start + i
+    );
+    const row3 = Array.from(
+        { length: gridWidth },
+        (_, i) => row3Start + i
+    );
+
+    const randomPool = [...row2, ...row3];
+
+    // Decide how many random decorative pixels you want from rows 2–3
+    const numRandomDecorative = Math.floor(Math.random() * 100) + 5;
+
+    // Shuffle randomPool
+    for (let i = randomPool.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [availablePixels[i], availablePixels[j]] = [availablePixels[j], availablePixels[i]];
+        [randomPool[i], randomPool[j]] = [randomPool[j], randomPool[i]];
     }
-    
-    decorativePixels = availablePixels.slice(0, numDecorativePixels);
+
+    // Take random ones from row 2 + row 3
+    const randomSelected = randomPool.slice(0, numRandomDecorative);
+
+    // Combine bottom row (full) + random picks
+    decorativePixels = [...row1, ...randomSelected];
 }
+
 
 function applyThemeColors() {
     const primaryColor = colorSets[currentSetIndex][0];
@@ -93,19 +111,12 @@ function applyThemeColors() {
     document.documentElement.style.setProperty('--themed-secondary', secondaryColor);
 }
 
-function getRandomIndex(currentIndex, arrayLength) {
-    let newIndex;
-    do {
-        newIndex = Math.floor(Math.random() * arrayLength);
-    } while (newIndex === currentIndex);
-    return newIndex;
-}
-
 function resizeCanvas() {
     canvas.width = mainHeader.offsetWidth;
     canvas.height = mainHeader.offsetHeight;
     drawPixels();
 }
+
 function drawPixels() {
     const pixelWidth = Math.ceil(canvas.width / gridWidth);
     const pixelHeight = Math.ceil(canvas.height / gridHeight);
@@ -160,8 +171,6 @@ function handlePullStart(clientY) {
     
     startY = clientY;
     reachedThreshold = false;
-    nextSetIndex = getRandomIndex(currentSetIndex, colorSets.length);
-    nextImageIndex = getRandomIndex(currentImageIndex, images.length);
     return true;
 }
 
@@ -184,17 +193,22 @@ function handlePullMove(clientY) {
 }
 
 function handlePullEnd() {
-    setPadding(0);
-    
+    // Check if threshold was reached and switch theme/image
     if (reachedThreshold) {
-        currentSetIndex = nextSetIndex;
-        currentImageIndex = nextImageIndex;
-        heading.textContent = headings[Math.floor(Math.random() * headings.length)];
+        // Switch to next color set
+        currentSetIndex = (currentSetIndex + 1) % colorSets.length;
+        
+        // Switch to next image
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        headerImage.src = images[currentImageIndex];
+        
+        // Apply new theme colors
+        applyThemeColors();
     }
     
-    pixelStates.fill(0);
+    setPadding(0);
     
-    applyThemeColors();
+    pixelStates.fill(0);
     
     currentPull = 0;
     initPixels();
@@ -245,11 +259,6 @@ let wheelTimeout;
 window.addEventListener('wheel', (e) => {
     if (window.scrollY === 0 && e.deltaY < 0) {
         e.preventDefault();
-        
-        if (currentPull === 0) {
-            nextSetIndex = getRandomIndex(currentSetIndex, colorSets.length);
-            nextImageIndex = getRandomIndex(currentImageIndex, images.length);
-        }
         
         const pullAmount = Math.abs(e.deltaY) * 0.5;
         currentPull = Math.min(currentPull + pullAmount, maxPadding - basePadding);

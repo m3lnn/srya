@@ -135,6 +135,25 @@
         
         // Show all projects initially
         filterProjects('all');
+
+        function updateYearVisibility() {
+    const yearContainers = document.getElementsByClassName('year-container');
+
+    for (let i = 0; i < yearContainers.length; i++) {
+        const container = yearContainers[i];
+        const projects = container.querySelectorAll('.project-card');
+
+        // Determine if at least one project is visible
+        const anyVisible = Array.from(projects).some(p => p.classList.contains('show'));
+
+        if (anyVisible) {
+            container.style.display = '';
+        } else {
+            container.style.display = 'none';
+        }
+    }
+}
+
         
         function filterProjects(filter) {
             const projects = document.getElementsByClassName('project-card');
@@ -170,6 +189,9 @@
             // If no filters are active, show everything
             if (activeFilters.size === 0) {
                 filterProjects('all');
+                projects[i].classList.add('show');
+                updateYearVisibility();
+
                 return;
             }
             
@@ -200,6 +222,8 @@
                     projects[i].classList.remove('show');
                 }
             }
+            updateYearVisibility();
+
         }
     </script>
 {{ end }}

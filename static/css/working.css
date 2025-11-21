@@ -8,6 +8,7 @@
 }
 
 .filter-btn {
+  font-family: 'IBM Plex Mono';
   font-weight: 400;
   transition: color 0.2s ease;
   color: var(--dark);
@@ -62,6 +63,7 @@
 
 .project-content {
   padding: 1.5rem;
+  height: 100%;
 }
 
 .project-description {

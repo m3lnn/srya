@@ -10,11 +10,6 @@ enableGitInfo = true
   currentRole = "Lead UX at [Wongdoody](https://www.wongdoody.com/)"
   description = "Portfolio of Shaurya - Software Designer & Creative Technologist"
 
-[params.social]
-  twitter = "yourusername"
-  github = "yourusername"
-  linkedin = "yourusername"
-
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]

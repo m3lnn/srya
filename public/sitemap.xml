@@ -12,7 +12,7 @@
     <lastmod>2025-11-16T22:19:47+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-11-16T22:19:47+05:30</lastmod>
+    <lastmod>2025-11-17T01:34:33+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/working/</loc>
     <lastmod>2025-11-16T22:19:47+05:30</lastmod>
@@ -53,15 +53,21 @@
     <lastmod>2025-11-16T22:19:47+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/painting/</loc>
+    <lastmod>2025-11-17T01:34:33+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/painting/1/</loc>
+    <lastmod>2025-11-17T01:34:33+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/painting/2/</loc>
+    <lastmod>2025-11-17T01:34:33+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/style/</loc>
     <lastmod>2025-11-16T22:19:47+05:30</lastmod>
   </url><url>
     <loc>http://localhost:1313/tech/</loc>
     <lastmod>2025-11-16T22:19:47+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/writing/</loc>
+    <lastmod>2025-10-30T22:48:27+05:30</lastmod>
   </url>
 </urlset>

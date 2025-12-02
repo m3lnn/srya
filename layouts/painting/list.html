@@ -1,6 +1,6 @@
 {{ define "header-content" }}
 <div id="mainHeader">
-        <img id="headerImage" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600" alt="Header">
+        <img id="headerImage" alt="Header">
         <canvas id="pixelCanvas"></canvas>
         <div id="paintingInfo" class="painting-info">
             <!--
@@ -16,6 +16,8 @@
 
 {{ define "main" }}
 <div class="painting-list">
+    <p class="blinking-text" style="text-align: center;">Scroll up to switch paintings</p>
+    <!---
     {{- range where .Site.RegularPages "Section" "painting" -}}
     <article class="painting-item">
         <span href="{{ .RelPermalink }}">
@@ -24,5 +26,6 @@
         </span>
     </article>
     {{- end -}}
+    -->
 </div>
 {{ end}}

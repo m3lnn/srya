@@ -71,10 +71,42 @@
   color: var(--dark);
 }
 
-.cover-image {
+/* Container that enforces the visual size for both real images and placeholders */
+.cover-media {
   width: 100%;
-  object-fit: cover;
+  aspect-ratio: 16/9;
+  min-height: 160px; /* fallback for older browsers */
+  position: relative;
+  overflow: hidden;
   border-bottom: 1px solid var(--gray);
+}
+
+.cover-media img.cover-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder when a cover image is missing */
+.cover-placeholder {
+  background: var(--themed-primary);
+  color: var(--placeholder-fg, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+}
+
+.cover-title {
+  font-size: 2.05rem;
+  padding: 0.4rem 0.8rem;
+  text-align: center;
+  line-height: 1.1;
+  opacity: 0.4;
 }
 
 .project-tags {
@@ -116,11 +148,18 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  width: 100%
 }
 
 /* ===============================
    RESPONSIVE BREAKPOINTS
    =============================== */
+
+@media (min-width: 1290px) {
+  .project-list{
+      grid-template-columns: 1fr 1fr 1fr
+  }
+}
 
 @media (max-width: 1024px) {
   .projects-year {

@@ -48,3 +48,13 @@
         padding: 40px 15px;
     }
 }
+
+.blinking-text{
+  animation: blinking-anim 2s infinite ease-in-out;
+}
+
+@keyframes blinking-anim {
+  0% { opacity: 0.6}
+  50% { opacity: 0.2;}
+  100% { opacity: 0.6}
+}

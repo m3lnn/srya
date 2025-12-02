@@ -66,5 +66,8 @@
   </url><url>
     <loc>http://localhost:1313/tech/</loc>
     <lastmod>2025-11-16T22:19:47+05:30</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/writing/</loc>
+    <lastmod>2025-10-30T22:48:27+05:30</lastmod>
   </url>
 </urlset>

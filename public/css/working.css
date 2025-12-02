@@ -31,8 +31,7 @@
 
 .project-card {
   display: none;
-  border-radius: 12px;
-  border: 1px solid var(--gray);
+  border-bottom: 1px solid var(--gray);
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -43,11 +42,10 @@
 }
 
 .project-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  border-bottom: 1px solid var(--dark);
 }
 
-.external:hover h3 {
+.project-card:hover h3 {
   color: var(--themed-primary);
 }
 
@@ -62,8 +60,11 @@
 }
 
 .project-content {
-  padding: 1.5rem;
+  padding-bottom: 0.5rem;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .project-description {
@@ -79,6 +80,7 @@
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--gray);
+  display: none;
 }
 
 .cover-media img.cover-image {
@@ -134,21 +136,20 @@
   gap: 2rem;
   position: relative;
   padding: 2em 0;
-  border-top: 1px solid var(--gray);
 }
 
 .projects-year {
   position: sticky;
   top: 5rem;
-  flex: 0 0 150px;
+  flex: 0 0 200px;
   height: fit-content;
 }
 
 .project-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  width: 100%
+   gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 /* ===============================
@@ -209,4 +210,21 @@
   .project-card {
     border-radius: 8px;
   }
+}
+
+/* ===============================
+   FLOATING COVER IMAGE
+   =============================== */
+
+.floating-cover-image {
+  position: fixed;
+  width: 200px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 10000;
+  pointer-events: none;
 }

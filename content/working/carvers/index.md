@@ -2,7 +2,7 @@
 title: "Carvers"
 date: 2025-11-16T14:33:31+05:30
 year: 2023
-tags: [UX]
+tags: [ux]
 featured: true
 slug: "carvers"
 description: "An Infotainment system that rethinks the experience of driving a car"

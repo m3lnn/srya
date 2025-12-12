@@ -1,5 +1,6 @@
 {{ define "page-head" }}
-<link rel="stylesheet" href="/css/working.css"> {{ end }} {{ define "header-content" }}
+<link rel="stylesheet" href="/css/working.css">
+{{ end }} {{ define "header-content" }}
 <canvas class="pixel-canvas" id="pixelCanvas"></canvas>
 
 <div class="heading-content" id="mainHeader">
@@ -58,27 +59,25 @@
                             {{ else }}
                             <a href="{{ .RelPermalink }}">
                         {{ end }}
-                        <div class="cover-media" data-cover-media>
-                                {{ with .Resources.GetMatch .Params.cover }}
-                                    <img src="{{ .RelPermalink }}" alt="" class="cover-image" data-cover-image>
-                                {{ else }}
-                                    <div class="cover-placeholder">
-                                        <span class="cover-title">{{ .Title }}</span>
-                                    </div>
-                                {{ end }}
-                            </div>
                             <div class="project-content" data-project-content>
-                                <div>
-                                    <h3>{{ .Title }}
-                                            {{ if .Params.external }}
-                                                🔗
-                                            {{ end }}
-                                        </h3>
-                                    {{ with .Params.description }}
-                                        <p class="project-description">{{ . }}</p>
-                                    {{ end }}
 
+                                <!-- cover media (collapsed by default, expands on hover) -->
+                                 {{ with .Resources.GetMatch .Params.cover }}
+                                <div class="cover-media">
+                                        <img src="{{ .RelPermalink }}" alt="{{ $.Title }}" class="cover-image">
                                 </div>
+                                {{ end }}
+
+                                <!-- textual content stays the same, wrapped as project-body -->
+                                <div class="project-body">
+                                    <div>
+                                        <h3>{{ .Title }}
+                                            {{ if .Params.external }} 🔗 {{ end }}
+                                        </h3>
+                                        {{ with .Params.description }}
+                                            <p class="project-description">{{ . }}</p>
+                                        {{ end }}
+                                    </div>
 
                                     <div>
                                         {{ with .Params.tags }}
@@ -87,8 +86,9 @@
                                                 <span class="tag-pill">{{ . }}</span>
                                             {{ end }}
                                         </div>
-                                    {{ end }}
+                                        {{ end }}
                                     </div>
+                                </div>
                             </div>
                         </a>
                 </div>
@@ -194,62 +194,6 @@
 
         updateYearVisibility();
     }
-
-    // Cursor-following cover image functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const projectContents = document.querySelectorAll('[data-project-content]');
-        const coverMedias = document.querySelectorAll('[data-cover-media]');
-        
-        // Keep track of active cover image
-        let activeCoverMedia = null;
-        let activeCoverImage = null;
-        
-        // Create a floating image element
-        const floatingImage = document.createElement('div');
-        floatingImage.className = 'floating-cover-image';
-        document.body.appendChild(floatingImage);
-        
-        projectContents.forEach((content, index) => {
-            const coverMedia = coverMedias[index];
-            const coverImage = coverMedia?.querySelector('[data-cover-image]');
-            
-            if (!coverImage) return; // Skip if no image
-            
-            content.addEventListener('mouseenter', function(e) {
-                activeCoverMedia = coverMedia;
-                activeCoverImage = coverImage;
-                
-                const imageSrc = coverImage.src;
-                floatingImage.style.backgroundImage = `url('${imageSrc}')`;
-                floatingImage.style.opacity = '1';
-                floatingImage.style.pointerEvents = 'none';
-                
-                updateFloatingImagePosition(e);
-            });
-            
-            content.addEventListener('mousemove', function(e) {
-                if (activeCoverImage === coverImage) {
-                    updateFloatingImagePosition(e);
-                }
-            });
-            
-            content.addEventListener('mouseleave', function() {
-                floatingImage.style.opacity = '0';
-                activeCoverMedia = null;
-                activeCoverImage = null;
-            });
-        });
-        
-        function updateFloatingImagePosition(e) {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            floatingImage.style.left = e.clientX + 'px';
-            floatingImage.style.top = e.clientY + 'px';
-            floatingImage.style.transform = 'translate(-50%, -50%)';
-        }
-    });
 </script>
 
 {{ end }}

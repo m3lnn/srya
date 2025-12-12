@@ -8,5 +8,5 @@ slug: "{{ .Name | urlize }}"
 description: ""
 external: true
 externalurl: ""
-cover: cover.png
+cover: image.png
 ---

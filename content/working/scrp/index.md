@@ -2,7 +2,7 @@
 title: "Scrp"
 date: 2025-11-03T00:41:08+05:30
 year: 2025
-tags: ["Web", "Visual Design"]
+tags: [web, visual design]
 featured: true
 external: true
 externalurl: "https://scrp-labs.vercel.app/"

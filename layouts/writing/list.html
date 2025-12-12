@@ -16,7 +16,11 @@
 <div class="narrow-container">
 {{ range .Pages.ByDate.Reverse }}
     <div class="essay-list-item">
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <div class="title-container">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <div class="tag">{{ .Type }}</div>
+
+        </div>
     <small class="light-text"> {{ .Date.Format "Jan 2, 2006" }}</small>
     </div>
 {{ end }}

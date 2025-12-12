@@ -7,6 +7,7 @@ categories: []
 featuredImage: ""
 slug: "{{ .Name | urlize }}"
 excerpt: ""
+type: essay
 ---
 #Essayy
 

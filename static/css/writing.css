@@ -4,3 +4,17 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.tag {
+    font-size: 0.8rem;
+    background-color: var(--gray);
+    padding: 3px 7px;
+    margin-left: 1rem;
+    align-self: center;
+    border-radius: 5px;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
